@@ -1,0 +1,10 @@
+(base) anastasiakutneva@MacBook-Air-Anastasia issue4 % python -m pytest  issue_4.py
+=========================================================================================== test session starts ============================================================================================
+platform darwin -- Python 3.8.5, pytest-6.2.5, py-1.9.0, pluggy-0.13.1
+rootdir: /Users/anastasiakutneva/PycharmProjects/hw5/issue4
+plugins: dash-1.16.2
+collected 4 items
+
+issue_4.py ....                                                                                                                                                                                      [100%]
+
+============================================================================================ 4 passed in 0.03s =============================================================================================

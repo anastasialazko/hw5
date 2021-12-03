@@ -1,0 +1,14 @@
+
+Ran 4 tests in 0.002s
+
+OK
+Launching unittests with arguments python -m unittest issue_3.TestMethods in /Users/anastasiakutneva/PycharmProjects/hw5/issue3
+
+
+Process finished with exit code 0
+
+(base) anastasiakutneva@MacBook-Air-Anastasia issue3 % python -m unittest  issue_3.py
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
