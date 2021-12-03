@@ -1,7 +1,8 @@
+import pytest
+from unittest.mock import patch
 import urllib.request
 import json
-from unittest.mock import MagicMock
-
+from io import StringIO
 
 
 API_URL = 'http://worldclockapi.com/api/json/utc/now'
@@ -36,10 +37,33 @@ def what_is_year_now() -> int:
 
     return int(year_str)
 
+def test_format():
+    date = StringIO('{"currentDateTime": "03-12-21"}')
+    with patch.object(urllib.request, 'urlopen', return_value=date):
+        with pytest.raises(ValueError):
+            what_is_year_now()
 
-if __name__ == '__main__':
-    year = what_is_year_now()
-    exp_year = 2019
 
-    print(year)
-    assert year == exp_year
+def test_key():
+    date = StringIO('{"isDayLightSavingsTime": "2021-03-12"}')
+    with patch.object(urllib.request, 'urlopen', return_value=date):
+        with pytest.raises(KeyError):
+            what_is_year_now()
+
+def test_ymd():
+    """YYYY-MM-DD"""
+    date = StringIO('{"currentDateTime": "2021-12-03"}')
+    with patch.object(urllib.request, 'urlopen', return_value=date):
+        actual = what_is_year_now()
+
+    assert actual == 2021
+
+
+def test_dmy():
+    """DD.MM.YYYY"""
+    date = StringIO('{"currentDateTime": "03.12.2021"}')
+    with patch.object(urllib.request, 'urlopen', return_value=date):
+        actual = what_is_year_now()
+
+    assert actual == 2021
+
